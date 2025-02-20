@@ -49,13 +49,13 @@ def build_dict(pool, filenames):
         global_word_counts = merge_word_counts_partial(global_word_counts, word_counts)
 
     # Збереження словника термінів
-    with open('dictionary.json', 'w', encoding='utf-8') as f:
+    with open('../dictionary.json', 'w', encoding='utf-8') as f:
         json.dump(global_word_counts, f)
 
     # Оцінка розміру колекції, загальної кількості слів у колекції та розміру словника
     collection_size = sum(os.path.getsize(filename) for filename in filenames)
     total_word_count = sum(global_word_counts.values())
-    dictionary_size = os.path.getsize('dictionary.json')
+    dictionary_size = os.path.getsize('../dictionary.json')
 
     print(f"Розмір колекції: {collection_size} байт")
     print(f"Загальна кількість слів у колекції: {total_word_count}")
@@ -97,9 +97,9 @@ def phrase_search():
 
 if __name__ == '__main__':
     # Шлях до папки з текстовими файлами
-    data_dir = 'docs'
+    data_dir = '../docs'
 
-    with open("dictionary.json", 'r') as f:
+    with open("../dictionary.json", 'r') as f:
         inv_index = json.load(f)
 
     vocabulary = list(inv_index.keys())
